@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     let targetNumber = Int.random(in:1...1000)
-
+    @IBOutlet weak var sumbittedGuess: UITextField!
+    
     // MARK: Initializers
 
     
