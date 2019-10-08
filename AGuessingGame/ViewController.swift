@@ -26,19 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // Make an object named 'synthesizer',wich is an instance of the
-        // class 'AVSpeechSynthesizer'
-        let synthesizer = AVSpeechSynthesizer ()
-        
-        // Make a strian that contains what we want to the computer to say
-        let message = "I'm thinking of a number between 1 and 100. Guess what it is."
-
-        // Make an object named 'utterance' wich is an instance of the class
-        // AVSpeechUterance
-        let utterance = AVSpeechUtterance (string: message)
-
-        // Speech the message
-        synthesizer.speak(utterance)
+        speak(message: "I'm thinking of a number between 1 and 100. Guess what it is.")
        
         // Report the target to the console for testing purpose
         print("for testing purposes, the random number is /(targetNumber)")
@@ -59,20 +47,36 @@ class ViewController: UIViewController {
         
       // Give the appropriate feedback to the user
         if guessNumber  > targetNumber {
-           print("Guess lower next time")
             
+            speak (message: "Guess lower next time.")
             
         } else if guessNumber < targetNumber {
-           print("Guess higher next time")
             
+            speak(message: "Guess higher next time.")
             
         } else {
-            print("You are correct!")
             
-            
+           speak(message: "You are correct!.")
             
         }
     }
     
+    func speak (message: String) {
+    
+    // Make an object named 'synthesizer',wich is an instance of the
+    // class 'AVSpeechSynthesizer'
+    let synthesizer = AVSpeechSynthesizer ()
+    
+    // Make an object named 'utterance' wich is an instance of the class
+    // AVSpeechUterance
+    let utterance = AVSpeechUtterance(string: message)
+    
+    // Speech the message
+    synthesizer.speak(utterance)
+        
+        //print the sessage
+        print(message)
+
+    }
 }
 
