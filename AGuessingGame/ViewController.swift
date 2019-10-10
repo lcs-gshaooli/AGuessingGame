@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     let targetNumber = Int.random(in:1...100)
-
     @IBOutlet weak var submittedGuess: UITextField!
     
     // MARK: Initializers
@@ -37,13 +36,20 @@ class ViewController: UIViewController {
     @IBAction func checkGuess(_ sender: Any) {
         
         //Obtain the guess value from the text file
-        let guessText = submittedGuess.text!
-        let guessNumber = Int(guessText)!
+        guard let guessText = submittedGuess.text, guessText != "" else {
+           speak(message: "Bro, try entering a value.")
+            return
+        }
+ 
+        //Try to convert the string into an integer data type
+        guard let guessNumber = Int (guessText) else {
+            speak(message: "Hey, how about entering a number")
+            return
+        }
+        
         
         // For testing purposes, what was the gues?
           print("For testing purposes, the guess made was /(guessNumber)")
-        
-        
         
       // Give the appropriate feedback to the user
         if guessNumber  > targetNumber {
@@ -59,8 +65,10 @@ class ViewController: UIViewController {
            speak(message: "You are correct!.")
             
         }
+        
     }
     
+    // A function that will speak whatever message is provided
     func speak (message: String) {
     
     // Make an object named 'synthesizer',wich is an instance of the
@@ -79,4 +87,3 @@ class ViewController: UIViewController {
 
     }
 }
-
